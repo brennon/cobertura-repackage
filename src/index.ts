@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-const xml2js = require("xml2js");
-const fs = require("fs").promises;
-
+const process = require("process");
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
+const repackage = require("./repackage");
 
 const argv = yargs(hideBin(process.argv))
   .option("input", {
@@ -27,29 +26,8 @@ const argv = yargs(hideBin(process.argv))
     type: "string",
   }).argv;
 
-(async () => {
-  //   await fs
-  //     .access(argv.input)
-  //     .then(() => {
-  //       console.log("good input");
-  //     })
-  //     .catch(() => {
-  //       console.log("bad input");
-  //     });
+(() => {
+  repackage.repackageFile(argv.input, argv.output, argv.prefix);
 })();
 
-// const prefix = "app";
-
-// fs.readFile(__dirname + "/cobertura-coverage.xml", function (err, data) {
-//   const parser = new xml2js.Parser();
-//   parser.parseString(data, function (err, result) {
-//     for (let p of result.coverage.packages[0].package) {
-//       p.$.name = `${prefix}.${p.$.name}`;
-//     }
-
-//     const builder = new xml2js.Builder();
-//     const xml = builder.buildObject(result);
-
-//     fs.writeFileSync(__dirname + "/cobertura-coverage.namespaced.xml", xml);
-//   });
-// });
+export {};
