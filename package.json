@@ -1,12 +1,15 @@
 {
   "name": "cobertura-repackage",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "description": "Add an arbitrary package prefix to a Cobertura coverage report",
-  "main": "build/index.js",
+  "main": "build/src/index.js",
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",
     "test": "jest"
+  },
+  "bin": {
+    "cobertura-repackage": "./build/src/index.js"
   },
   "author": "Brennon Bortz",
   "repository": {
